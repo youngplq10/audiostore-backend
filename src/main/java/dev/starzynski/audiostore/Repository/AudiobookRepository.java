@@ -5,6 +5,13 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AudiobookRepository extends MongoRepository<Audiobook, ObjectId> {
+    Optional<Audiobook> findAudiobookByTitleIgnoreCase(String title);
+
+    Boolean existsAudiobookByTitleIgnoreCase(String title);
+
+    void deleteAudiobookByTitleIgnoreCase(String title);
 }
