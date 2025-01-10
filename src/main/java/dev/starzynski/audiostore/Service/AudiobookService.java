@@ -41,12 +41,17 @@ public class AudiobookService {
     }
 
     public void updateAudiobook(Audiobook audiobook, String title){
-        Optional<Audiobook> updatingAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title);
+        Audiobook updatingAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow(null);
 
-        if (updatingAudiobook.isPresent()) {
-            ObjectId updatingAudiobookId = updatingAudiobook.get().getId();
-            audiobook.setId(updatingAudiobookId);
-            audiobookRepository.insert(audiobook);
-        }
+        updatingAudiobook.setTitle(audiobook.getTitle());
+        updatingAudiobook.setDescription(audiobook.getDescription());
+        updatingAudiobook.setAuthor(audiobook.getAuthor());
+        updatingAudiobook.setCoverLink(audiobook.getCoverLink());
+        updatingAudiobook.setAudioLink(audiobook.getAudioLink());
+        updatingAudiobook.setGenre(audiobook.getGenre());
+        updatingAudiobook.setDuration(audiobook.getDuration());
+        updatingAudiobook.setPublished_at_date(audiobook.getPublished_at_date());
+
+        audiobookRepository.save(updatingAudiobook);
     }
 }

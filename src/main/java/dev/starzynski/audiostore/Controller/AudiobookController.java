@@ -53,7 +53,7 @@ public class AudiobookController {
         else { return new ResponseEntity<String> ("Audiobook with this title doesn't exist.", HttpStatus.OK); }
     }
 
-    @PostMapping(value = "/audiobook/create", consumes = "multipart/form-data")
+    @PostMapping(value = "/audiobook", consumes = "multipart/form-data")
     public ResponseEntity<String> createAudiobook(
             @Validated @RequestParam("title") String title,
             @Validated @RequestParam("description") String description,
@@ -78,10 +78,12 @@ public class AudiobookController {
                 if (!directory.exists()) {
                     directory.mkdirs();
                 }
+
                 byte[] audioBytes = audioFile.getBytes();
                 byte[] coverBytes = coverImage.getBytes();
 
                 Path coverPath = Paths.get(uploadDirectory + coverImage.getOriginalFilename());
+
                 Path audioPath = Paths.get(uploadDirectory + audioFile.getOriginalFilename());
 
                 Files.write(coverPath, coverBytes);
@@ -105,7 +107,7 @@ public class AudiobookController {
         }
     }
 
-    @PatchMapping(value = "/audiobook/{title}", consumes = "multipart/form-data")
+    @PutMapping(value = "/audiobook/{title}", consumes = "multipart/form-data")
     public ResponseEntity<String> updateAudiobook(
             @PathVariable String title,
             @Validated @RequestParam("description") String description,
@@ -119,39 +121,61 @@ public class AudiobookController {
         String newTitle = title.replaceAll("-", " ");
 
         try {
+            Optional<Audiobook> audiobook = audiobookService.getAudiobookByTitle(newTitle);
             Audiobook newAudiobook = new Audiobook();
 
-            newAudiobook.setTitle(title);
-            newAudiobook.setDescription(description);
-            newAudiobook.setGenre(genre);
-            newAudiobook.setDuration(duration);
-            newAudiobook.setPublished_at_date(published_at_date);
+            if(!title.isEmpty()) { newAudiobook.setTitle(title); } else { newAudiobook.setTitle(audiobook.get().getTitle()); }
+            if(!description.isEmpty()) { newAudiobook.setDescription(description); } else { newAudiobook.setDescription(audiobook.get().getDescription()); }
+            if(!genre.isEmpty()) { newAudiobook.setGenre(genre); } else { newAudiobook.setGenre(audiobook.get().getGenre()); }
+            if(duration != 0) { newAudiobook.setDuration(duration); } else { newAudiobook.setDuration(audiobook.get().getDuration()); }
+            if(published_at_date != null) { newAudiobook.setPublished_at_date(published_at_date); } else { newAudiobook.setPublished_at_date(audiobook.get().getPublished_at_date()); }
 
+            if (!coverImage.isEmpty()) {
+                try {
+                    File directory = new File(uploadDirectory);
 
-                File directory = new File(uploadDirectory);
+                    if (!directory.exists()) {
+                        directory.mkdirs();
+                    }
 
-                if (!directory.exists()) {
-                    directory.mkdirs();
+                    if (uploadDirectory + coverImage.getOriginalFilename() != audiobook.get().getCoverLink()) {
+                        byte[] coverBytes = coverImage.getBytes();
+                        Path coverPath = Paths.get(uploadDirectory + coverImage.getOriginalFilename());
+                        Files.write(coverPath, coverBytes);
+                        newAudiobook.setCoverLink(uploadDirectory + coverImage.getOriginalFilename());
+                    } else {
+                        newAudiobook.setCoverLink(audiobook.get().getCoverLink());
+                    }
+                } catch (Exception e) {
+                    System.out.print(e.getMessage());
+                    return new ResponseEntity<String> (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
                 }
-                byte[] audioBytes = audioFile.getBytes();
-                byte[] coverBytes = coverImage.getBytes();
+            }
 
-                Path coverPath = Paths.get(uploadDirectory + coverImage.getOriginalFilename());
-                Path audioPath = Paths.get(uploadDirectory + audioFile.getOriginalFilename());
+            if (!audioFile.isEmpty()) {
+                try {
+                    File directory = new File(uploadDirectory);
 
-                Files.write(coverPath, coverBytes);
-                Files.write(audioPath, audioBytes);
+                    if (!directory.exists()) {
+                        directory.mkdirs();
+                    }
 
-                newAudiobook.setCoverLink(uploadDirectory + coverImage.getOriginalFilename());
-                newAudiobook.setAudioLink(uploadDirectory + audioFile.getOriginalFilename());
+                    if (uploadDirectory + audioFile.getOriginalFilename() != audiobook.get().getAudioLink()) {
+                        byte[] audioBytes = audioFile.getBytes();
+                        Path audioPath = Paths.get(uploadDirectory + audioFile.getOriginalFilename());
+                        Files.write(audioPath, audioBytes);
+                        newAudiobook.setAudioLink(uploadDirectory + audioFile.getOriginalFilename());
+                    } else {
+                        newAudiobook.setAudioLink(audiobook.get().getAudioLink());
+                    }
+                } catch (Exception e) {
+                    System.out.print(e.getMessage());
+                    return new ResponseEntity<String> (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
 
-                newAudiobook.setCoverLink(coverImage.getOriginalFilename());
-                newAudiobook.setAudioLink(audioFile.getOriginalFilename());
-
-                audiobookService.updateAudiobook(newAudiobook, newTitle);
-                return new ResponseEntity<String> ("Updated", HttpStatus.OK);
-
-
+            audiobookService.updateAudiobook(newAudiobook, audiobook.get().getTitle());
+            return new ResponseEntity<String> ("created", HttpStatus.CREATED);
         } catch (Exception e){
             System.out.print(e.getMessage());
             return new ResponseEntity<String> (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
