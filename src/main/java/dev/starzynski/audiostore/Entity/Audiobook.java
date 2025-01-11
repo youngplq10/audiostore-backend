@@ -27,9 +27,9 @@ public class Audiobook {
 
     private String audioLink;
 
-    private List<String> genre;
+    private List<Integer> genre;
 
-    private int duration;
+    private Integer duration;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date published_at_date;
@@ -39,12 +39,12 @@ public class Audiobook {
 
     public Audiobook(){
         added_at_date = new Date();
+        duration = 0;
+        id = new ObjectId();
     }
 
     public ObjectId getId() { return id; }
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+    public void setId(ObjectId id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -61,11 +61,11 @@ public class Audiobook {
     public String getAudioLink() { return audioLink; }
     public void setAudioLink(String audioLink) { this.audioLink = audioLink; }
 
-    public List<String> getGenre() { return genre; }
-    public void setGenre(List<String> genre) { this.genre = genre; }
+    public List<Integer> getGenre() { return genre; }
+    public void setGenre(List<Integer> genre) { this.genre = genre; }
 
-    public int getDuration() { return duration; }
-    public void setDuration(int duration) { this.duration = duration; }
+    public Integer getDuration() { return duration; }
+    public void setDuration(Integer duration) { this.duration = duration; }
 
     public Date getPublished_at_date() { return published_at_date; }
     public void setPublished_at_date(Date published_at_date) { this.published_at_date = published_at_date; }

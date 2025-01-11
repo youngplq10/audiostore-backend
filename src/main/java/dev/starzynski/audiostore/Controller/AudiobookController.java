@@ -27,7 +27,7 @@ public class AudiobookController {
     private AudiobookService audiobookService;
 
     @Value("${upload.directory}")
-    public String uploadDirectory;
+    public String uploadDirectory = "/uploads/";
 
     @GetMapping("audiobooks")
     public ResponseEntity<List<Audiobook>> getAudiobooks() {
@@ -57,8 +57,8 @@ public class AudiobookController {
     public ResponseEntity<String> createAudiobook(
             @Validated @RequestParam("title") String title,
             @Validated @RequestParam("description") String description,
-            @Validated @RequestParam("genre") List<String> genre,
-            @Validated @RequestParam("duration") int duration,
+            @Validated @RequestParam("genre") List<Integer> genre,
+            @Validated @RequestParam("duration") Integer duration,
             @Validated @RequestParam("published_at_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
             @Validated @RequestParam("coverImage") MultipartFile coverImage,
             @Validated @RequestParam("audioFile") MultipartFile audioFile
@@ -82,22 +82,19 @@ public class AudiobookController {
                 byte[] audioBytes = audioFile.getBytes();
                 byte[] coverBytes = coverImage.getBytes();
 
-                Path coverPath = Paths.get(uploadDirectory + coverImage.getOriginalFilename());
+                Path coverPath = Paths.get(uploadDirectory + newAudiobook.getId() + coverImage.getOriginalFilename());
 
-                Path audioPath = Paths.get(uploadDirectory + audioFile.getOriginalFilename());
+                Path audioPath = Paths.get(uploadDirectory + newAudiobook.getId() + audioFile.getOriginalFilename());
 
                 Files.write(coverPath, coverBytes);
                 Files.write(audioPath, audioBytes);
 
-                newAudiobook.setCoverLink(uploadDirectory + coverImage.getOriginalFilename());
-                newAudiobook.setAudioLink(uploadDirectory + audioFile.getOriginalFilename());
+                newAudiobook.setCoverLink(coverPath.toString());
+                newAudiobook.setAudioLink(audioPath.toString());
 
             } catch (Exception e) {
                 System.out.print(e.getMessage());
             }
-
-            newAudiobook.setCoverLink(coverImage.getOriginalFilename());
-            newAudiobook.setAudioLink(audioFile.getOriginalFilename());
 
             Audiobook newAudiobook2 = audiobookService.createAudiobook(newAudiobook);
             return new ResponseEntity<String> ("created: " + newAudiobook2.getTitle(), HttpStatus.CREATED);
@@ -107,15 +104,16 @@ public class AudiobookController {
         }
     }
 
-    @PutMapping(value = "/audiobook/{title}", consumes = "multipart/form-data")
+    @PatchMapping(value = "/audiobook/{title}", consumes = "multipart/form-data")
     public ResponseEntity<String> updateAudiobook(
             @PathVariable String title,
-            @Validated @RequestParam("description") String description,
-            @Validated @RequestParam("genre") List<String> genre,
-            @Validated @RequestParam("duration") int duration,
-            @Validated @RequestParam("published_at_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
-            @Validated @RequestParam("coverImage") MultipartFile coverImage,
-            @Validated @RequestParam("audioFile") MultipartFile audioFile
+            @Validated @RequestParam(name = "description", required = false) String description,
+            @Validated @RequestParam(name = "author", required = false) String author,
+            @Validated @RequestParam(name = "genre", required = false) List<Integer> genre,
+            @Validated @RequestParam(name = "duration", required = false) Integer duration,
+            @Validated @RequestParam(name = "published_at_date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
+            @Validated @RequestParam(name = "coverImage", required = false) MultipartFile coverImage,
+            @Validated @RequestParam(name = "audioFile", required = false) MultipartFile audioFile
             ){
 
         String newTitle = title.replaceAll("-", " ");
@@ -124,13 +122,14 @@ public class AudiobookController {
             Optional<Audiobook> audiobook = audiobookService.getAudiobookByTitle(newTitle);
             Audiobook newAudiobook = new Audiobook();
 
-            if(!title.isEmpty()) { newAudiobook.setTitle(title); } else { newAudiobook.setTitle(audiobook.get().getTitle()); }
-            if(!description.isEmpty()) { newAudiobook.setDescription(description); } else { newAudiobook.setDescription(audiobook.get().getDescription()); }
-            if(!genre.isEmpty()) { newAudiobook.setGenre(genre); } else { newAudiobook.setGenre(audiobook.get().getGenre()); }
-            if(duration != 0) { newAudiobook.setDuration(duration); } else { newAudiobook.setDuration(audiobook.get().getDuration()); }
+            if(title.isEmpty()) { newAudiobook.setTitle(title); } else { newAudiobook.setTitle(audiobook.get().getTitle()); }
+            if(description != null) { newAudiobook.setDescription(description); } else { newAudiobook.setDescription(audiobook.get().getDescription()); }
+            if(author != null) { newAudiobook.setAuthor(author); } else { newAudiobook.setAuthor(audiobook.get().getAuthor()); }
+            if(genre != null) { newAudiobook.setGenre(genre); } else { newAudiobook.setGenre(audiobook.get().getGenre()); }
+            if(duration != null) { newAudiobook.setDuration(duration); } else { newAudiobook.setDuration(audiobook.get().getDuration()); }
             if(published_at_date != null) { newAudiobook.setPublished_at_date(published_at_date); } else { newAudiobook.setPublished_at_date(audiobook.get().getPublished_at_date()); }
 
-            if (!coverImage.isEmpty()) {
+            if (coverImage != null) {
                 try {
                     File directory = new File(uploadDirectory);
 
@@ -138,11 +137,11 @@ public class AudiobookController {
                         directory.mkdirs();
                     }
 
-                    if (uploadDirectory + coverImage.getOriginalFilename() != audiobook.get().getCoverLink()) {
+                    if (uploadDirectory + audiobook.get().getId() + coverImage.getOriginalFilename() != audiobook.get().getCoverLink()) {
                         byte[] coverBytes = coverImage.getBytes();
-                        Path coverPath = Paths.get(uploadDirectory + coverImage.getOriginalFilename());
+                        Path coverPath = Paths.get(uploadDirectory + audiobook.get().getId() + coverImage.getOriginalFilename());
                         Files.write(coverPath, coverBytes);
-                        newAudiobook.setCoverLink(uploadDirectory + coverImage.getOriginalFilename());
+                        newAudiobook.setCoverLink(uploadDirectory + audiobook.get().getId() + coverImage.getOriginalFilename());
                     } else {
                         newAudiobook.setCoverLink(audiobook.get().getCoverLink());
                     }
@@ -151,8 +150,11 @@ public class AudiobookController {
                     return new ResponseEntity<String> (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
+            else {
+                newAudiobook.setCoverLink(audiobook.get().getCoverLink());
+            }
 
-            if (!audioFile.isEmpty()) {
+            if (audioFile != null) {
                 try {
                     File directory = new File(uploadDirectory);
 
@@ -160,11 +162,11 @@ public class AudiobookController {
                         directory.mkdirs();
                     }
 
-                    if (uploadDirectory + audioFile.getOriginalFilename() != audiobook.get().getAudioLink()) {
+                    if (uploadDirectory + audiobook.get().getId() + audioFile.getOriginalFilename() != audiobook.get().getAudioLink()) {
                         byte[] audioBytes = audioFile.getBytes();
-                        Path audioPath = Paths.get(uploadDirectory + audioFile.getOriginalFilename());
+                        Path audioPath = Paths.get(uploadDirectory + audiobook.get().getId() + audioFile.getOriginalFilename());
                         Files.write(audioPath, audioBytes);
-                        newAudiobook.setAudioLink(uploadDirectory + audioFile.getOriginalFilename());
+                        newAudiobook.setAudioLink(uploadDirectory + audiobook.get().getId() + audioFile.getOriginalFilename());
                     } else {
                         newAudiobook.setAudioLink(audiobook.get().getAudioLink());
                     }
@@ -172,6 +174,9 @@ public class AudiobookController {
                     System.out.print(e.getMessage());
                     return new ResponseEntity<String> (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
                 }
+            }
+            else {
+                newAudiobook.setAudioLink(audiobook.get().getAudioLink());
             }
 
             audiobookService.updateAudiobook(newAudiobook, audiobook.get().getTitle());
