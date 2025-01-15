@@ -2,11 +2,13 @@ package dev.starzynski.audiostore.Controller;
 
 import dev.starzynski.audiostore.Entity.Audiobook;
 import dev.starzynski.audiostore.Service.AudiobookService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +32,7 @@ public class AudiobookController {
     public String uploadDirectory = "/uploads/";
 
     @GetMapping("audiobooks")
-    public ResponseEntity<List<Audiobook>> getAudiobooks() {
+    public ResponseEntity<List<Audiobook>> getAudiobooks(HttpServletRequest request) {
         return new ResponseEntity<List<Audiobook>>(audiobookService.getAllAudiobooks(), HttpStatus.OK);
     }
 
