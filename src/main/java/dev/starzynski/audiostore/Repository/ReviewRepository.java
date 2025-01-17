@@ -1,11 +1,10 @@
 package dev.starzynski.audiostore.Repository;
 
-import dev.starzynski.audiostore.Entity.Genre;
+import dev.starzynski.audiostore.Entity.Review;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GenreRepository extends MongoRepository<Genre, ObjectId> {
-    Genre findByNameIgnoreCase(String name);
+public interface ReviewRepository extends MongoRepository<Review, ObjectId> {
 }

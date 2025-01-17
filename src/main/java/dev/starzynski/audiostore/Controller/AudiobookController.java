@@ -1,6 +1,7 @@
 package dev.starzynski.audiostore.Controller;
 
 import dev.starzynski.audiostore.Entity.Audiobook;
+import dev.starzynski.audiostore.Entity.Genre;
 import dev.starzynski.audiostore.Service.AudiobookService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,18 +60,23 @@ public class AudiobookController {
     public ResponseEntity<String> createAudiobook(
             @Validated @RequestParam("title") String title,
             @Validated @RequestParam("description") String description,
-            @Validated @RequestParam("genre") List<Integer> genre,
+            @Validated @RequestParam("genre") String genreName,
+            @Validated @RequestParam("author") String author,
             @Validated @RequestParam("duration") Integer duration,
-            @Validated @RequestParam("published_at_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
+            @Validated @RequestParam("published_at_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date published_at_date,
             @Validated @RequestParam("coverImage") MultipartFile coverImage,
             @Validated @RequestParam("audioFile") MultipartFile audioFile
     ){
         try{
             Audiobook newAudiobook = new Audiobook();
 
+            Genre newGenre = new Genre();
+            newGenre.setName(genreName);
+
             newAudiobook.setTitle(title);
             newAudiobook.setDescription(description);
-            newAudiobook.setGenre(genre);
+            newAudiobook.setAuthor(author);
+            newAudiobook.setGenre(newGenre);
             newAudiobook.setDuration(duration);
             newAudiobook.setPublished_at_date(published_at_date);
 
@@ -91,8 +97,8 @@ public class AudiobookController {
                 Files.write(coverPath, coverBytes);
                 Files.write(audioPath, audioBytes);
 
-                newAudiobook.setCoverLink(coverPath.toString());
-                newAudiobook.setAudioLink(audioPath.toString());
+                newAudiobook.setCoverLink("/uploads/" + newAudiobook.getId() + coverImage.getOriginalFilename());
+                newAudiobook.setAudioLink("/uploads/" + newAudiobook.getId() + audioFile.getOriginalFilename());
 
             } catch (Exception e) {
                 System.out.print(e.getMessage());
@@ -111,7 +117,7 @@ public class AudiobookController {
             @PathVariable String title,
             @Validated @RequestParam(name = "description", required = false) String description,
             @Validated @RequestParam(name = "author", required = false) String author,
-            @Validated @RequestParam(name = "genre", required = false) List<Integer> genre,
+            @Validated @RequestParam(name = "genre", required = false) Genre genre,
             @Validated @RequestParam(name = "duration", required = false) Integer duration,
             @Validated @RequestParam(name = "published_at_date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
             @Validated @RequestParam(name = "coverImage", required = false) MultipartFile coverImage,

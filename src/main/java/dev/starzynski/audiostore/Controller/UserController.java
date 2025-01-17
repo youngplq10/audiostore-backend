@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @GetMapping("/user/{username}")
-    public ResponseEntity<Optional<User>> getUser(@PathVariable String username){
-        return new ResponseEntity<Optional<User>> (userService.getOneUser(username), HttpStatus.OK);
-    }
 
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user){

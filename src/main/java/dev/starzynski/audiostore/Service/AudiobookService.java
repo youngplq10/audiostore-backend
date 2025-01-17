@@ -1,10 +1,14 @@
 package dev.starzynski.audiostore.Service;
 
 import dev.starzynski.audiostore.Entity.Audiobook;
+import dev.starzynski.audiostore.Entity.Genre;
 import dev.starzynski.audiostore.Repository.AudiobookRepository;
+import dev.starzynski.audiostore.Repository.GenreRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +20,13 @@ public class AudiobookService {
     private AudiobookRepository audiobookRepository;
 
     @Autowired
+    private GenreRepository genreRepository;
+
+    @Autowired
     private MongoTemplate mongoTemplate;
 
     public List<Audiobook> getAllAudiobooks() {
+
         return audiobookRepository.findAll();
     }
 
@@ -35,9 +43,19 @@ public class AudiobookService {
     }
 
     public Audiobook createAudiobook(Audiobook audiobook){
-        Audiobook newAudiobook = audiobookRepository.insert(audiobook);
 
-        return newAudiobook;
+        System.out.println(audiobook.getGenre().getName());
+
+        Genre genre = genreRepository.findByNameIgnoreCase(audiobook.getGenre().getName());
+
+        audiobook.setGenre(genre);
+
+        audiobookRepository.insert(audiobook);
+
+        genre.getAudiobooks().add(audiobook);
+        genreRepository.save(genre);
+
+        return audiobook;
     }
 
     public void updateAudiobook(Audiobook audiobook, String title){

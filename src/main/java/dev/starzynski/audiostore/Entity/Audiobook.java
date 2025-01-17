@@ -1,11 +1,15 @@
 package dev.starzynski.audiostore.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -27,7 +31,13 @@ public class Audiobook {
 
     private String audioLink;
 
-    private List<Integer> genre;
+    @JsonIgnoreProperties("audiobook")
+    @DocumentReference(lazy = true)
+    private Genre genre;
+
+    @DocumentReference(lazy = true)
+    @JsonIgnoreProperties("audiobook")
+    private List<Review> reviews;
 
     private Integer duration;
 
@@ -61,8 +71,8 @@ public class Audiobook {
     public String getAudioLink() { return audioLink; }
     public void setAudioLink(String audioLink) { this.audioLink = audioLink; }
 
-    public List<Integer> getGenre() { return genre; }
-    public void setGenre(List<Integer> genre) { this.genre = genre; }
+    public Genre getGenre() { return genre; }
+    public void setGenre(Genre genre) { this.genre = genre; }
 
     public Integer getDuration() { return duration; }
     public void setDuration(Integer duration) { this.duration = duration; }
@@ -71,4 +81,7 @@ public class Audiobook {
     public void setPublished_at_date(Date published_at_date) { this.published_at_date = published_at_date; }
 
     public Date getAdded_at_date() { return added_at_date; }
+
+    public List<Review> getReviews(){ return reviews; }
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
 }
