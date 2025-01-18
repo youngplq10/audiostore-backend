@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "678aaf9276ede70d22aa78c0"
+  },
+  "stars": 5,
+  "reviewBody": "great audiobook",
+  "audiobook": {
+    "$oid": "678aa75f76ede70d22aa781e"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Review"
+}]

@@ -1,0 +1,530 @@
+[{
+  "_id": {
+    "$oid": "678aa72676ede70d22aa781b"
+  },
+  "title": "Pride and Prejudice",
+  "description": "A romantic novel of manners that explores the issues of marriage, money, and social class in early 19th-century England, focusing on Elizabeth Bennet and Mr. Darcy.",
+  "author": "Jane Austen",
+  "coverLink": "/uploads/678aa72676ede70d22aa781bPrideAndPrejudiceCover.jpg",
+  "audioLink": "/uploads/678aa72676ede70d22aa781bdark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "duration": 3151,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:53:26.442Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa75f76ede70d22aa781e"
+  },
+  "title": "1984",
+  "description": "George Orwell's 1984 is a chilling dystopian novel that explores the oppressive grip of totalitarianism in a society under constant surveillance. Set in a world where the Party, led by Big Brother, controls truth and thought, it follows Winston Smith’s rebellion against this regime. The story examines themes of propaganda, individualism, and the terrifying power of authoritarian rule to manipulate reality and suppress freedom.",
+  "author": "George Orwell",
+  "coverLink": "/uploads/678aa75f76ede70d22aa781e1984Cover.jpg",
+  "audioLink": "/uploads/678aa75f76ede70d22aa781edark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "reviews": [
+    {
+      "$oid": "678aaf9276ede70d22aa78c0"
+    }
+  ],
+  "duration": 3085,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:54:23.870Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa78776ede70d22aa7821"
+  },
+  "title": "To Kill a Mockingbird",
+  "description": "A novel of warmth and humor despite dealing with serious issues of rape and racial inequality, seen through the eyes of young Scout Finch in the Deep South.",
+  "author": "Harper Lee",
+  "coverLink": "/uploads/678aa78776ede70d22aa7821ToKillAMockingbirdCover.jpg",
+  "audioLink": "/uploads/678aa78776ede70d22aa7821dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "duration": 5235,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:55:03.834Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa7b176ede70d22aa7825"
+  },
+  "title": "The Catcher in the Rye",
+  "description": "J.D. Salinger's story of teenage rebellion, isolation, and the search for identity, seen through the eyes of the disaffected Holden Caulfield.",
+  "author": "J.D. Salinger",
+  "coverLink": "/uploads/678aa7b176ede70d22aa7825TheCatcherInTheRyeCover.jpg",
+  "audioLink": "/uploads/678aa7b176ede70d22aa7825dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "duration": 1950,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:55:45.662Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa7d976ede70d22aa782a"
+  },
+  "title": "The Grapes of Wrath",
+  "description": "John Steinbeck's masterpiece about the plight of migrant farmers during the Great Depression, focusing on the Joad family's journey to California.",
+  "author": "John Steinbeck",
+  "coverLink": "/uploads/678aa7d976ede70d22aa782aTheGrapesOfWrathCover.jpg",
+  "audioLink": "/uploads/678aa7d976ede70d22aa782adark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "duration": 5755,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:56:25.516Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa80076ede70d22aa7830"
+  },
+  "title": "Brave New World",
+  "description": "Aldous Huxley's dystopian novel exploring the dehumanizing aspects of scientific advancements, consumerism, and totalitarian government control.",
+  "author": "Aldous Huxley",
+  "coverLink": "/uploads/678aa80076ede70d22aa7830BraveNewWorldCover.jpg",
+  "audioLink": "/uploads/678aa80076ede70d22aa7830dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "duration": 2500,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:57:04.096Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa82876ede70d22aa7837"
+  },
+  "title": "Rich Dad Poor Dad",
+  "description": "Robert Kiyosaki explains the mindset and financial knowledge that distinguishes wealthy individuals from those struggling financially, emphasizing financial independence.",
+  "author": "Robert T. Kiyosaki",
+  "coverLink": "/uploads/678aa82876ede70d22aa7837RichDadPoorDadCover.jpg",
+  "audioLink": "/uploads/678aa82876ede70d22aa7837dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "duration": 2450,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:57:44.738Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa86976ede70d22aa783a"
+  },
+  "title": "Think and Grow Rich",
+  "description": "Napoleon Hill explores the power of personal belief and strategies to achieve financial success, based on stories of successful individuals from various industries.",
+  "author": "Napoleon Hill",
+  "coverLink": "/uploads/678aa86976ede70d22aa783aThinkAndGrowRichCover.jpg",
+  "audioLink": "/uploads/678aa86976ede70d22aa783adark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "duration": 3200,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:58:49.730Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa88d76ede70d22aa783e"
+  },
+  "title": "The Intelligent Investor",
+  "description": "Benjamin Graham's seminal work on value investing, focusing on strategies to minimize risk while maximizing long-term returns.",
+  "author": "Benjamin Graham",
+  "coverLink": "/uploads/678aa88d76ede70d22aa783eTheIntelligentInvestorCover.jpg",
+  "audioLink": "/uploads/678aa88d76ede70d22aa783edark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "duration": 4800,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T18:59:25.542Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa8b976ede70d22aa7843"
+  },
+  "title": "The Millionaire Next Door",
+  "description": "A revealing study of the common traits among America's millionaires, focusing on frugality, investment habits, and living below one's means.",
+  "author": "Thomas J. Stanley and William D. Danko",
+  "coverLink": "/uploads/678aa8b976ede70d22aa7843TheMillionaireNextDoorCover.jpg",
+  "audioLink": "/uploads/678aa8b976ede70d22aa7843dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "duration": 3300,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:00:09.023Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aa8d676ede70d22aa7849"
+  },
+  "title": "You Are a Badass at Making Money",
+  "description": "Jen Sincero's motivational guide on reshaping your mindset to attract wealth and success, combining humor with actionable financial advice.",
+  "author": "Jen Sincero",
+  "coverLink": "/uploads/678aa8d676ede70d22aa7849YouAreABadassAtMakingMoneyCover.jpg",
+  "audioLink": "/uploads/678aa8d676ede70d22aa7849dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "duration": 2700,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:00:38.443Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aad1b76ede70d22aa7850"
+  },
+  "title": "The Notebook",
+  "description": "A romantic drama about the enduring love between Noah and Allie, told through letters and memories as they struggle with the effects of Alzheimer's disease.",
+  "author": "Nicholas Sparks",
+  "coverLink": "/uploads/678aad1b76ede70d22aa7850TheNotebookCover.jpg",
+  "audioLink": "/uploads/678aad1b76ede70d22aa7850dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "duration": 2900,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:18:51.945Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aad3976ede70d22aa7854"
+  },
+  "title": "Me Before You",
+  "description": "Jojo Moyes' emotional tale of Louisa Clark's transformative relationship with Will Traynor, a man whose life was changed by a tragic accident.",
+  "author": "Jojo Moyes",
+  "coverLink": "/uploads/678aad3976ede70d22aa7854MeBeforeYouCover.jpg",
+  "audioLink": "/uploads/678aad3976ede70d22aa7854dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "duration": 3100,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:19:21.562Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aad5b76ede70d22aa7859"
+  },
+  "title": "Outlander",
+  "description": "Diana Gabaldon's genre-bending series starter about time-traveling Claire Beauchamp and her romance with Scottish warrior Jamie Fraser.",
+  "author": "Diana Gabaldon",
+  "coverLink": "/uploads/678aad5b76ede70d22aa7859OutlanderCover.jpg",
+  "audioLink": "/uploads/678aad5b76ede70d22aa7859dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "duration": 4300,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:19:55.612Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aad7676ede70d22aa785f"
+  },
+  "title": "The Hating Game",
+  "description": "Sally Thorne's office romance between two co-workers whose professional rivalry evolves into a complicated and undeniable attraction.",
+  "author": "Sally Thorne",
+  "coverLink": "/uploads/678aad7676ede70d22aa785fTheHatingGameCover.jpg",
+  "audioLink": "/uploads/678aad7676ede70d22aa785fdark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "duration": 2700,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:20:22.118Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aad9d76ede70d22aa7866"
+  },
+  "title": "Sapiens: A Brief History of Humankind",
+  "description": "Yuval Noah Harari takes a sweeping look at the history of humanity, from ancient hunter-gatherers to the present, examining key revolutions in society and technology.",
+  "author": "Yuval Noah Harari",
+  "coverLink": "/uploads/678aad9d76ede70d22aa7866SapiensABriefHistoryOfHumankindCover.jpg",
+  "audioLink": "/uploads/678aad9d76ede70d22aa7866dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "duration": 4250,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:21:01.535Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aadbe76ede70d22aa7869"
+  },
+  "title": "The Silk Roads",
+  "description": "Peter Frankopan provides a fresh perspective on world history, focusing on the central role of the Silk Roads in shaping trade, culture, and power dynamics over centuries.",
+  "author": "Peter Frankopan",
+  "coverLink": "/uploads/678aadbe76ede70d22aa7869TheSilkRoadsCover.jpg",
+  "audioLink": "/uploads/678aadbe76ede70d22aa7869dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "duration": 3800,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:21:34.607Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aadde76ede70d22aa786d"
+  },
+  "title": "The Wright Brothers",
+  "description": "David McCullough's compelling narrative of Orville and Wilbur Wright's historic invention of the airplane and their enduring influence on aviation.",
+  "author": "David McCullough",
+  "coverLink": "/uploads/678aadde76ede70d22aa786dTheWrightBrothersCover.jpg",
+  "audioLink": "/uploads/678aadde76ede70d22aa786ddark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "duration": 3100,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:22:06.158Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aadf776ede70d22aa7872"
+  },
+  "title": "The Guns of August",
+  "description": "Barbara W. Tuchman's classic account of the diplomatic and military decisions that led to the outbreak of World War I.",
+  "author": "Barbara W. Tuchman",
+  "coverLink": "/uploads/678aadf776ede70d22aa7872TheGunsOfAugustCover.jpg",
+  "audioLink": "/uploads/678aadf776ede70d22aa7872dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "duration": 4800,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:22:31.344Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aae0d76ede70d22aa7878"
+  },
+  "title": "A People's History of the United States",
+  "description": "Howard Zinn's narrative of American history told from the perspective of marginalized groups rather than political and economic elites.",
+  "author": "Howard Zinn",
+  "coverLink": "/uploads/678aae0d76ede70d22aa7878APeoplesHistoryOfTheUnitedStatesCover.jpg",
+  "audioLink": "/uploads/678aae0d76ede70d22aa7878dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "duration": 5300,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:22:53.037Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aae2f76ede70d22aa787f"
+  },
+  "title": "Becoming",
+  "description": "Michelle Obama's deeply personal memoir reflects on her experiences as the First Lady of the United States, her childhood, and her life as a mother and wife.",
+  "author": "Michelle Obama",
+  "coverLink": "/uploads/678aae2f76ede70d22aa787fBecomingCover.jpg",
+  "audioLink": "/uploads/678aae2f76ede70d22aa787fdark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "duration": 3600,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:23:27.284Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aae4776ede70d22aa7882"
+  },
+  "title": "Educated",
+  "description": "Tara Westover's memoir recounts her journey from growing up in a strict and abusive household to earning a PhD at Cambridge University.",
+  "author": "Tara Westover",
+  "coverLink": "/uploads/678aae4776ede70d22aa7882EducatedCover.jpg",
+  "audioLink": "/uploads/678aae4776ede70d22aa7882dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "duration": 4200,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:23:51.654Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aae5f76ede70d22aa7886"
+  },
+  "title": "The Diary of a Young Girl",
+  "description": "Anne Frank's powerful and moving diary of her experiences hiding during the Nazi occupation of the Netherlands.",
+  "author": "Anne Frank",
+  "coverLink": "/uploads/678aae5f76ede70d22aa7886TheDiaryOfAYoungGirlCover.jpg",
+  "audioLink": "/uploads/678aae5f76ede70d22aa7886dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "duration": 3400,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:24:15.655Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aae7976ede70d22aa788b"
+  },
+  "title": "The Glass Castle",
+  "description": "Jeannette Walls' gripping memoir of her unconventional and poverty-stricken upbringing with her eccentric parents.",
+  "author": "Jeannette Walls",
+  "coverLink": "/uploads/678aae7976ede70d22aa788bTheGlassCastleCover.jpg",
+  "audioLink": "/uploads/678aae7976ede70d22aa788bdark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "duration": 3100,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:24:41.103Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+},
+{
+  "_id": {
+    "$oid": "678aaea276ede70d22aa7891"
+  },
+  "title": "Long Walk to Freedom",
+  "description": "Nelson Mandela's autobiography chronicling his life journey from rural South Africa to becoming the nation's first Black president.",
+  "author": "Nelson Mandela",
+  "coverLink": "/uploads/678aaea276ede70d22aa7891LongWalkToFreedomCover.jpg",
+  "audioLink": "/uploads/678aaea276ede70d22aa7891dark-engine-logo-141942.mp3",
+  "genre": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "duration": 5600,
+  "published_at_date": {
+    "$date": "2020-08-28T22:00:00.000Z"
+  },
+  "added_at_date": {
+    "$date": "2025-01-17T19:25:22.272Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Audiobook"
+}]

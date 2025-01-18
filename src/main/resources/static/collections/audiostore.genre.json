@@ -1,0 +1,195 @@
+[{
+  "_id": {
+    "$oid": "678a7683056c2906893f2367"
+  },
+  "name": "Literature & Fiction",
+  "audiobooks": [
+    {
+      "$oid": "678aa75f76ede70d22aa781e"
+    },
+    {
+      "$oid": "678aa78776ede70d22aa7821"
+    },
+    {
+      "$oid": "678aa7b176ede70d22aa7825"
+    },
+    {
+      "$oid": "678aa7d976ede70d22aa782a"
+    },
+    {
+      "$oid": "678aa80076ede70d22aa7830"
+    }
+  ],
+  "added_at_date": {
+    "$date": "2025-01-17T15:25:55.039Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a768b056c2906893f2368"
+  },
+  "name": "Money & Finance",
+  "audiobooks": [
+    {
+      "$oid": "678aa82876ede70d22aa7837"
+    },
+    {
+      "$oid": "678aa86976ede70d22aa783a"
+    },
+    {
+      "$oid": "678aa88d76ede70d22aa783e"
+    },
+    {
+      "$oid": "678aa8b976ede70d22aa7843"
+    },
+    {
+      "$oid": "678aa8d676ede70d22aa7849"
+    }
+  ],
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:03.005Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a768f056c2906893f2369"
+  },
+  "name": "Romance",
+  "audiobooks": [
+    {
+      "$oid": "678aa72676ede70d22aa781b"
+    },
+    {
+      "$oid": "678aad1b76ede70d22aa7850"
+    },
+    {
+      "$oid": "678aad3976ede70d22aa7854"
+    },
+    {
+      "$oid": "678aad5b76ede70d22aa7859"
+    },
+    {
+      "$oid": "678aad7676ede70d22aa785f"
+    }
+  ],
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:07.920Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a7697056c2906893f236a"
+  },
+  "name": "Health & Wellness",
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:15.587Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a769c056c2906893f236b"
+  },
+  "name": "History",
+  "audiobooks": [
+    {
+      "$oid": "678aad9d76ede70d22aa7866"
+    },
+    {
+      "$oid": "678aadbe76ede70d22aa7869"
+    },
+    {
+      "$oid": "678aadde76ede70d22aa786d"
+    },
+    {
+      "$oid": "678aadf776ede70d22aa7872"
+    },
+    {
+      "$oid": "678aae0d76ede70d22aa7878"
+    }
+  ],
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:20.660Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76a2056c2906893f236c"
+  },
+  "name": "Erotica",
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:26.041Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76bf056c2906893f236d"
+  },
+  "name": "Computers & Technology",
+  "added_at_date": {
+    "$date": "2025-01-17T15:26:55.539Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76c6056c2906893f236e"
+  },
+  "name": "LGBTQ ",
+  "added_at_date": {
+    "$date": "2025-01-17T15:27:02.108Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76ce056c2906893f236f"
+  },
+  "name": "Home & Garden",
+  "added_at_date": {
+    "$date": "2025-01-17T15:27:10.695Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76dc056c2906893f2370"
+  },
+  "name": "Biographies & Memories",
+  "audiobooks": [
+    {
+      "$oid": "678aae2f76ede70d22aa787f"
+    },
+    {
+      "$oid": "678aae4776ede70d22aa7882"
+    },
+    {
+      "$oid": "678aae5f76ede70d22aa7886"
+    },
+    {
+      "$oid": "678aae7976ede70d22aa788b"
+    },
+    {
+      "$oid": "678aaea276ede70d22aa7891"
+    }
+  ],
+  "added_at_date": {
+    "$date": "2025-01-17T15:27:24.112Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+},
+{
+  "_id": {
+    "$oid": "678a76e9056c2906893f2371"
+  },
+  "name": "Politics & Social Sciences",
+  "added_at_date": {
+    "$date": "2025-01-17T15:27:37.585Z"
+  },
+  "_class": "dev.starzynski.audiostore.Entity.Genre"
+}]

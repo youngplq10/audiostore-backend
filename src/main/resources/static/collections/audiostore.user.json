@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "677fedb947ae87206c4eeb87"
+  },
+  "username": "starzynski",
+  "email": "patryk@starzynski.dev",
+  "phone": 111222333,
+  "listenTime": 0,
+  "favGenres": [],
+  "listening": [
+    1
+  ]
+},
+{
+  "_id": {
+    "$oid": "678939e92d7141f15c4eeb87"
+  },
+  "username": "patryk",
+  "email": "patryk2@starzynski.dev",
+  "password": "p@123",
+  "phone": 37522,
+  "listenTime": 0,
+  "favGenres": [],
+  "listening": [
+    2
+  ]
+},
+{
+  "_id": {
+    "$oid": "6789450c2524c04b42f63a29"
+  },
+  "username": "gabi",
+  "email": "gabi@starzynski.dev",
+  "password": "g@123",
+  "phone": 555666777,
+  "listenTime": 50,
+  "_class": "dev.starzynski.audiostore.Entity.User"
+}]
