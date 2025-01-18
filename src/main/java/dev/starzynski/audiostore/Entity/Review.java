@@ -23,6 +23,8 @@ public class Review {
     @JsonIgnoreProperties("review")
     private Audiobook audiobook;
 
+    public ObjectId getId() { return id; }
+
     public Integer getStars() { return stars; }
     public void setStars(Integer stars) { this.stars = stars; }
 

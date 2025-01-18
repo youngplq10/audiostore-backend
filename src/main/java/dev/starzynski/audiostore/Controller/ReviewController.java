@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @Validated
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReviewController {
 
     @Autowired

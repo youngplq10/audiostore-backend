@@ -24,4 +24,9 @@ public class GenreService {
 
         return "created";
     }
+
+    public Genre getGenreByName(String name){
+        System.out.println(name);
+        return genreRepository.findByNameIgnoreCase(name);
+    }
 }

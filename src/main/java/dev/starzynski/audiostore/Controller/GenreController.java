@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class GenreController {
     @Autowired
     private GenreService genreService;
@@ -19,6 +20,13 @@ public class GenreController {
     @GetMapping("/genres")
     public ResponseEntity<List<Genre>> getAllGenres(){
         return new ResponseEntity<List<Genre>> (genreService.getAllGenres(), HttpStatus.OK);
+    }
+
+    @GetMapping("/genre/{name}")
+    public ResponseEntity<Genre> getGenreNamed(@PathVariable String name){
+        String newName = name.replaceAll("-", " ");
+
+        return new ResponseEntity<Genre> (genreService.getGenreByName(newName), HttpStatus.OK);
     }
 
     @PostMapping("/genre")

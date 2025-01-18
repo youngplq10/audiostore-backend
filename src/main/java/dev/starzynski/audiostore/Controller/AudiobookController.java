@@ -6,6 +6,7 @@ import dev.starzynski.audiostore.Service.AudiobookService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ import java.util.Optional;
 @RestController
 @Validated
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AudiobookController {
     @Autowired
     private AudiobookService audiobookService;
@@ -32,8 +34,9 @@ public class AudiobookController {
     @Value("${upload.directory}")
     public String uploadDirectory = "/uploads/";
 
-    @GetMapping("audiobooks")
+    @GetMapping("/audiobooks")
     public ResponseEntity<List<Audiobook>> getAudiobooks(HttpServletRequest request) {
+
         return new ResponseEntity<List<Audiobook>>(audiobookService.getAllAudiobooks(), HttpStatus.OK);
     }
 
