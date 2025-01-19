@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "user")
 public class User {
 
@@ -18,6 +21,8 @@ public class User {
     private String password;
 
     private Integer phone;
+
+    private List<Save> saves;
 
     private Integer listenTime;
 
@@ -39,4 +44,7 @@ public class User {
 
     public Integer getListenTime() { return listenTime; }
     public void setListenTime(Integer listenTime) { this.listenTime = listenTime; }
+
+    public List<Save> getSaves() { return saves; }
+    public void setSaves(List<Save> saves) { this.saves = saves; }
 }
