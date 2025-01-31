@@ -42,7 +42,7 @@ public class UserService {
         );
 
         if(authentication.isAuthenticated()){
-            System.out.println("failed");
+            return jwtService.generateToken(user.getUsername());
         }
 
         else {

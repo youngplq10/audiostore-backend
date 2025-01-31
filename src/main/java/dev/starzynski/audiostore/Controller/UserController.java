@@ -29,8 +29,8 @@ public class UserController {
         return new ResponseEntity<String> (userService.likeAudiobook(username, title), HttpStatus.OK);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<User> getUser(@RequestParam String username) {
+    @GetMapping("/user/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username) {
         return new ResponseEntity<User> (userService.getOneUser(username), HttpStatus.OK);
     }
 
