@@ -24,4 +24,14 @@ public class UserController {
         return userService.verify(user);
     }
 
+    @PostMapping("/like")
+    public ResponseEntity<String> likeAudiobook(@RequestParam String username, @RequestParam String title) {
+        return new ResponseEntity<String> (userService.likeAudiobook(username, title), HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<User> getUser(@RequestParam String username) {
+        return new ResponseEntity<User> (userService.getOneUser(username), HttpStatus.OK);
+    }
+
 }

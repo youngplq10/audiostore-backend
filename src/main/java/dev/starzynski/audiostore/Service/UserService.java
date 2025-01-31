@@ -1,6 +1,8 @@
 package dev.starzynski.audiostore.Service;
 
+import dev.starzynski.audiostore.Entity.Audiobook;
 import dev.starzynski.audiostore.Entity.User;
+import dev.starzynski.audiostore.Repository.AudiobookRepository;
 import dev.starzynski.audiostore.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +20,16 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private AudiobookRepository audiobookRepository;
+
+    @Autowired
     private AuthenticationManager authManager;
 
     @Autowired
     private JWTService jwtService;
 
-    public Optional<User> getOneUser(String username) {
-        return userRepository.findUserByUsername(username);
+    public User getOneUser(String username) {
+        return userRepository.findUserByUsername(username).orElseThrow();
     }
 
     public User createUser(User user) {
@@ -44,5 +49,17 @@ public class UserService {
             System.out.println("failed");
         }
         return "Failed";
+    }
+
+    public String likeAudiobook(String username, String title) {
+        User user = userRepository.findUserByUsernameIgnoreCase(username);
+
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow();
+
+        user.getLikedAudiobooks().add(audiobook);
+
+        userRepository.save(user);
+
+        return "Liked";
     }
 }

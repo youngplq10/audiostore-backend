@@ -1,8 +1,9 @@
 package dev.starzynski.audiostore.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -22,10 +23,13 @@ public class User {
 
     private Integer phone;
 
-    private Integer listenTime;
+    @DBRef
+    @JsonIgnoreProperties("genre")
+    private List<Audiobook> likedAudiobooks;
 
     public User(){
-        id = new ObjectId();
+        this.likedAudiobooks = new ArrayList<>();
+        this.id = new ObjectId();
     }
 
     public String getUsername() { return username; }
@@ -40,6 +44,6 @@ public class User {
     public Integer getPhone() { return phone; }
     public void setPhone(Integer phone) { this.phone = phone; }
 
-    public Integer getListenTime() { return listenTime; }
-    public void setListenTime(Integer listenTime) { this.listenTime = listenTime; }
+    public List<Audiobook> getLikedAudiobooks() { return likedAudiobooks; }
+    public void setLikedAudiobooks(List<Audiobook> likedAudiobooks) { this.likedAudiobooks = likedAudiobooks; }
 }
