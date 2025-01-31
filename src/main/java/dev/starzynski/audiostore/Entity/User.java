@@ -22,8 +22,6 @@ public class User {
 
     private Integer phone;
 
-    private List<Save> saves;
-
     private Integer listenTime;
 
     public User(){
@@ -44,7 +42,4 @@ public class User {
 
     public Integer getListenTime() { return listenTime; }
     public void setListenTime(Integer listenTime) { this.listenTime = listenTime; }
-
-    public List<Save> getSaves() { return saves; }
-    public void setSaves(List<Save> saves) { this.saves = saves; }
 }

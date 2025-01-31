@@ -37,9 +37,12 @@ public class UserService {
         );
 
         if(authentication.isAuthenticated()){
-            return jwtService.generateToken(user.getUsername());
+            System.out.println("failed");
         }
 
+        else {
+            System.out.println("failed");
+        }
         return "Failed";
     }
 }
