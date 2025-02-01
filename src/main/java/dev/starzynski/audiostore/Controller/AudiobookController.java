@@ -43,7 +43,6 @@ public class AudiobookController {
     @GetMapping("/audiobook/{title}")
     public ResponseEntity<Optional<Audiobook>> getAudiobook(@PathVariable String title) {
         String newTitle = title.replaceAll("-", " ");
-        System.out.println(newTitle);
 
         return new ResponseEntity<Optional<Audiobook>> (audiobookService.getAudiobookByTitle(newTitle), HttpStatus.OK);
     }

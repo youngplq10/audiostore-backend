@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -61,5 +62,21 @@ public class UserService {
         userRepository.save(user);
 
         return "Liked";
+    }
+
+    public String unlikeAudiobook(String username, String title) {
+        User user = userRepository.findUserByUsernameIgnoreCase(username);
+
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow();
+
+        for (int i=0; i<user.getLikedAudiobooks().size(); i++) {
+            if (Objects.equals(user.getLikedAudiobooks().get(i).getTitle(), audiobook.getTitle())) {
+                user.getLikedAudiobooks().remove(user.getLikedAudiobooks().get(i));
+            }
+        }
+
+        userRepository.save(user);
+
+        return "Unliked";
     }
 }
