@@ -20,12 +20,12 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/reviews")
+    @GetMapping("/public/reviews")
     public ResponseEntity<List<Review>> getAllReviews(){
         return new ResponseEntity<List<Review>> (reviewService.getAllReviews(), HttpStatus.OK);
     }
 
-    @PostMapping("/review")
+    @PostMapping("/auth/review")
     public String createReview(@Validated @RequestParam String reviewBody,
                                @Validated @RequestParam String audiobookTitle,
                                @Validated @RequestParam Integer stars)

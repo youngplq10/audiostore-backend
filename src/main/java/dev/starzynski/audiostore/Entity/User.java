@@ -23,6 +23,8 @@ public class User {
 
     private Integer phone;
 
+    private String role;
+
     @DBRef
     @JsonIgnoreProperties("genre")
     private List<Audiobook> likedAudiobooks;
@@ -31,6 +33,8 @@ public class User {
         this.likedAudiobooks = new ArrayList<>();
         this.id = new ObjectId();
     }
+
+    public ObjectId getId() { return id; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -46,4 +50,7 @@ public class User {
 
     public List<Audiobook> getLikedAudiobooks() { return likedAudiobooks; }
     public void setLikedAudiobooks(List<Audiobook> likedAudiobooks) { this.likedAudiobooks = likedAudiobooks; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

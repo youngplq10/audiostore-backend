@@ -14,29 +14,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping("/public/register")
     public ResponseEntity<User> createUser(@RequestBody User user){
         return new ResponseEntity<User> (userService.createUser(user), HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/public/login")
     public String loginUser(@RequestBody User user){
         return userService.verify(user);
     }
 
-    @PostMapping("/like")
+    @PostMapping("/auth/like")
     public ResponseEntity<String> likeAudiobook(@RequestParam String username, @RequestParam String title) {
         String newTitle = title.replaceAll("-", " ");
         return new ResponseEntity<String> (userService.likeAudiobook(username, newTitle), HttpStatus.OK);
     }
 
-    @PostMapping("/unlike")
+    @PostMapping("/auth/unlike")
     public ResponseEntity<String> unLikeAudiobook(@RequestParam String username, @RequestParam String title) {
         String newTitle = title.replaceAll("-", " ");
         return new ResponseEntity<String> (userService.unlikeAudiobook(username, newTitle), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/auth/user/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username) {
         return new ResponseEntity<User> (userService.getOneUser(username), HttpStatus.OK);
     }

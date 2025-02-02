@@ -17,19 +17,19 @@ public class GenreController {
     @Autowired
     private GenreService genreService;
 
-    @GetMapping("/genres")
+    @GetMapping("/public/genres")
     public ResponseEntity<List<Genre>> getAllGenres(){
         return new ResponseEntity<List<Genre>> (genreService.getAllGenres(), HttpStatus.OK);
     }
 
-    @GetMapping("/genre/{name}")
+    @GetMapping("/public/genre/{name}")
     public ResponseEntity<Genre> getGenreNamed(@PathVariable String name){
         String newName = name.replaceAll("-", " ");
 
         return new ResponseEntity<Genre> (genreService.getGenreByName(newName), HttpStatus.OK);
     }
 
-    @PostMapping("/genre")
+    @PostMapping("/admin/genre")
     public ResponseEntity<String> createGenre(@Validated @RequestParam String name){
         return new ResponseEntity<String> (genreService.createGenre(name), HttpStatus.CREATED);
     }

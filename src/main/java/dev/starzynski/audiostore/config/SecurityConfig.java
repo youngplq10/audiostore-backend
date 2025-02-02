@@ -42,14 +42,15 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/v1/**", "/uploads/**")
-                        .permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/auth/**").authenticated()
+                        .anyRequest().permitAll())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+                .userDetailsService(myUserDetailsService)
                 .build();
     }
 

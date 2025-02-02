@@ -34,20 +34,20 @@ public class AudiobookController {
     @Value("${upload.directory}")
     public String uploadDirectory = "/uploads/";
 
-    @GetMapping("/audiobooks")
+    @GetMapping("/public/audiobooks")
     public ResponseEntity<List<Audiobook>> getAudiobooks(HttpServletRequest request) {
 
         return new ResponseEntity<List<Audiobook>>(audiobookService.getAllAudiobooks(), HttpStatus.OK);
     }
 
-    @GetMapping("/audiobook/{title}")
+    @GetMapping("/public/audiobook/{title}")
     public ResponseEntity<Optional<Audiobook>> getAudiobook(@PathVariable String title) {
         String newTitle = title.replaceAll("-", " ");
 
         return new ResponseEntity<Optional<Audiobook>> (audiobookService.getAudiobookByTitle(newTitle), HttpStatus.OK);
     }
 
-    @DeleteMapping("/audiobook/{title}")
+    @DeleteMapping("/admin/audiobook/{title}")
     public ResponseEntity<String> deleteAudiobook(@PathVariable String title){
         String newTitle = title.replaceAll("-", " ");
 
@@ -58,7 +58,7 @@ public class AudiobookController {
         else { return new ResponseEntity<String> ("Audiobook with this title doesn't exist.", HttpStatus.OK); }
     }
 
-    @PostMapping(value = "/audiobook", consumes = "multipart/form-data")
+    @PostMapping(value = "/admin/audiobook", consumes = "multipart/form-data")
     public ResponseEntity<String> createAudiobook(
             @Validated @RequestParam("title") String title,
             @Validated @RequestParam("description") String description,
@@ -114,7 +114,7 @@ public class AudiobookController {
         }
     }
 
-    @PatchMapping(value = "/audiobook/{title}", consumes = "multipart/form-data")
+    @PatchMapping(value = "/admin/audiobook/{title}", consumes = "multipart/form-data")
     public ResponseEntity<String> updateAudiobook(
             @PathVariable String title,
             @Validated @RequestParam(name = "description", required = false) String description,
