@@ -26,14 +26,11 @@ public class ReviewController {
     }
 
     @PostMapping("/auth/review")
-    public String createReview(@Validated @RequestParam String reviewBody,
-                               @Validated @RequestParam String audiobookTitle,
-                               @Validated @RequestParam Integer stars)
-    {
+    public String createReview(@Validated @RequestParam String reviewBody, @Validated @RequestParam String audiobookTitle, @Validated @RequestParam Integer stars, @Validated @RequestParam String username) {
         Review newReview = new Review();
         newReview.setReviewBody(reviewBody);
         newReview.setStars(stars);
 
-        return reviewService.createReview(newReview, audiobookTitle);
+        return reviewService.createReview(newReview, audiobookTitle, username);
     }
 }

@@ -2,8 +2,10 @@ package dev.starzynski.audiostore.Service;
 
 import dev.starzynski.audiostore.Entity.Audiobook;
 import dev.starzynski.audiostore.Entity.Review;
+import dev.starzynski.audiostore.Entity.User;
 import dev.starzynski.audiostore.Repository.AudiobookRepository;
 import dev.starzynski.audiostore.Repository.ReviewRepository;
+import dev.starzynski.audiostore.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,27 +20,32 @@ public class ReviewService {
     @Autowired
     private AudiobookRepository audiobookRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<Review> getAllReviews(){
         return reviewRepository.findAll();
     }
 
-    public String createReview(Review review, String audiobookTitle){
-        Optional<Audiobook> audiobookOptional = audiobookRepository.findAudiobookByTitleIgnoreCase(audiobookTitle);
+    public String createReview(Review review, String audiobookTitle, String username){
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(audiobookTitle).orElseThrow();
 
-        if (audiobookOptional.isPresent()){
-            Audiobook audiobook = audiobookOptional.get();
+        User user = userRepository.findUserByUsername(username).orElseThrow();
 
-            review.setAudiobook(audiobook);
+        review.setAudiobook(audiobook);
 
-            reviewRepository.insert(review);
+        review.setUser(user);
 
-            audiobook.getReviews().add(review);
+        reviewRepository.insert(review);
 
-            audiobookRepository.save(audiobook);
+        audiobook.getReviews().add(review);
 
-            return "created";
-        }
+        audiobookRepository.save(audiobook);
 
-        return "failed";
+        user.getReviews().add(review);
+
+        userRepository.save(user);
+
+        return "created";
     }
 }

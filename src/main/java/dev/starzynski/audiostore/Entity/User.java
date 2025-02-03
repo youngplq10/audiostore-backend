@@ -29,9 +29,14 @@ public class User {
     @JsonIgnoreProperties("genre")
     private List<Audiobook> likedAudiobooks;
 
+    @DBRef
+    @JsonIgnoreProperties("user")
+    private List<Review> reviews;
+
     public User(){
         this.likedAudiobooks = new ArrayList<>();
         this.id = new ObjectId();
+        this.reviews = new ArrayList<>();
     }
 
     public ObjectId getId() { return id; }
@@ -53,4 +58,7 @@ public class User {
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
+
+    public List<Review> getReviews() { return reviews; }
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
 }
