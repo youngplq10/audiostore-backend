@@ -33,8 +33,9 @@ public class UserService {
         return userRepository.findUserByUsername(username).orElseThrow();
     }
 
-    public User createUser(User user) {
-        return userRepository.insert(user);
+    public String createUser(User user) {
+        userRepository.insert(user);
+        return jwtService.generateToken(user.getUsername());
     }
 
     public String verify(User user) {
