@@ -9,6 +9,7 @@ import dev.starzynski.audiostore.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,17 @@ public class ReviewService {
         userRepository.save(user);
 
         return "created";
+    }
+
+    public List<Review> getAllReviewsOfAudiobook(String title) {
+        Optional<Audiobook> optionalAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title);
+
+        if (optionalAudiobook.isPresent()) {
+            Audiobook audiobook = optionalAudiobook.get();
+
+            return audiobook.getReviews().reversed();
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

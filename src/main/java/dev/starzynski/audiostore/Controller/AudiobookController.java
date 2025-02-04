@@ -124,7 +124,7 @@ public class AudiobookController {
             @Validated @RequestParam(name = "published_at_date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date published_at_date,
             @Validated @RequestParam(name = "coverImage", required = false) MultipartFile coverImage,
             @Validated @RequestParam(name = "audioFile", required = false) MultipartFile audioFile
-            ){
+    ){
 
         String newTitle = title.replaceAll("-", " ");
 

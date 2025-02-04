@@ -25,6 +25,12 @@ public class ReviewController {
         return new ResponseEntity<List<Review>> (reviewService.getAllReviews(), HttpStatus.OK);
     }
 
+    @GetMapping("/public/reviews/{title}")
+    public ResponseEntity<List<Review>> getAllReviewsOfAudiobook(@PathVariable String title) {
+        String newTitle = title.replaceAll("-", " ");
+        return new ResponseEntity<List<Review>> (reviewService.getAllReviewsOfAudiobook(newTitle), HttpStatus.OK);
+    }
+
     @PostMapping("/auth/review")
     public String createReview(@Validated @RequestParam String reviewBody, @Validated @RequestParam String audiobookTitle, @Validated @RequestParam Integer stars, @Validated @RequestParam String username) {
         Review newReview = new Review();

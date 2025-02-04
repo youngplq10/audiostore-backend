@@ -6,7 +6,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,15 +23,19 @@ public class Review {
     private String reviewBody;
 
     @DBRef
-    @JsonIgnoreProperties("review")
+    @JsonIgnoreProperties({"reviews", "genre"})
     private Audiobook audiobook;
 
     @DBRef
-    @JsonIgnoreProperties("reviews")
+    @JsonIgnoreProperties({"reviews", "likedAudiobooks"})
     private User user;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date createdAtDate;
 
     public Review() {
         this.id = new ObjectId();
+        this.createdAtDate = new Date();
     }
 
     public ObjectId getId() { return id; }
@@ -45,4 +51,6 @@ public class Review {
 
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
+
+    public Date getCreatedAtDate() { return createdAtDate; }
 }

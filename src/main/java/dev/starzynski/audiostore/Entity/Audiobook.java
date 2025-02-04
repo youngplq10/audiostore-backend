@@ -31,7 +31,7 @@ public class Audiobook {
 
     private String audioLink;
 
-    @JsonIgnoreProperties("audiobook")
+    @JsonIgnoreProperties("audiobooks")
     @DocumentReference(lazy = true)
     private Genre genre;
 
