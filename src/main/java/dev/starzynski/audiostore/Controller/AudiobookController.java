@@ -47,6 +47,11 @@ public class AudiobookController {
         return new ResponseEntity<Optional<Audiobook>> (audiobookService.getAudiobookByTitle(newTitle), HttpStatus.OK);
     }
 
+    @GetMapping("/public/audiobook/search")
+    public ResponseEntity<List<Audiobook>> searchAudiobooks(@RequestParam String search) {
+        return new ResponseEntity<List<Audiobook>> (audiobookService.searchAudiobooks(search), HttpStatus.OK);
+    }
+
     @DeleteMapping("/admin/audiobook/{title}")
     public ResponseEntity<String> deleteAudiobook(@PathVariable String title){
         String newTitle = title.replaceAll("-", " ");

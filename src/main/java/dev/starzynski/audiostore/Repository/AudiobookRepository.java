@@ -16,4 +16,7 @@ public interface AudiobookRepository extends MongoRepository<Audiobook, ObjectId
     Boolean existsAudiobookByTitleIgnoreCase(String title);
 
     void deleteAudiobookByTitleIgnoreCase(String title);
+
+    @Query("{ 'title': { $regex: ?0, $options: 'i' } }")
+    List<Audiobook> searchAudiobooks(String search);
 }

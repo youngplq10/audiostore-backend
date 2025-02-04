@@ -29,7 +29,9 @@ public class ReviewService {
     }
 
     public String createReview(Review review, String audiobookTitle, String username){
-        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(audiobookTitle).orElseThrow();
+        String newTitle = audiobookTitle.replaceAll("-", " ");
+
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle).orElseThrow();
 
         User user = userRepository.findUserByUsername(username).orElseThrow();
 

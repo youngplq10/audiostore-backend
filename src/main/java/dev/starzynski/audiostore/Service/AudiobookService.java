@@ -69,4 +69,8 @@ public class AudiobookService {
 
         audiobookRepository.save(updatingAudiobook);
     }
+
+    public List<Audiobook> searchAudiobooks(String search) {
+        return audiobookRepository.searchAudiobooks(search);
+    }
 }
