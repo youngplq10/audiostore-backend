@@ -26,19 +26,16 @@ public class UserController {
 
     @PostMapping("/auth/like")
     public ResponseEntity<String> likeAudiobook(@RequestParam String username, @RequestParam String title) {
-        String newTitle = title.replaceAll("-", " ");
-        return new ResponseEntity<String> (userService.likeAudiobook(username, newTitle), HttpStatus.OK);
+        return new ResponseEntity<String> (userService.likeAudiobook(username, title), HttpStatus.OK);
     }
 
     @PostMapping("/auth/unlike")
     public ResponseEntity<String> unLikeAudiobook(@RequestParam String username, @RequestParam String title) {
-        String newTitle = title.replaceAll("-", " ");
-        return new ResponseEntity<String> (userService.unlikeAudiobook(username, newTitle), HttpStatus.OK);
+        return new ResponseEntity<String> (userService.unlikeAudiobook(username, title), HttpStatus.OK);
     }
 
     @GetMapping("/auth/user/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username) {
         return new ResponseEntity<User> (userService.getOneUser(username), HttpStatus.OK);
     }
-
 }

@@ -28,7 +28,9 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-    public String createReview(Review review, String audiobookTitle, String username){
+    public String createReview(String reviewBody, Integer stars, String audiobookTitle, String username){
+        Review review = new Review(reviewBody, stars);
+
         String newTitle = audiobookTitle.replaceAll("-", " ");
 
         Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle).orElseThrow();
@@ -53,7 +55,9 @@ public class ReviewService {
     }
 
     public List<Review> getAllReviewsOfAudiobook(String title) {
-        Optional<Audiobook> optionalAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title);
+        String newTitle = title.replaceAll("-", " ");
+
+        Optional<Audiobook> optionalAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle);
 
         if (optionalAudiobook.isPresent()) {
             Audiobook audiobook = optionalAudiobook.get();

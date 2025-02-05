@@ -5,14 +5,12 @@ import dev.starzynski.audiostore.Entity.User;
 import dev.starzynski.audiostore.Repository.AudiobookRepository;
 import dev.starzynski.audiostore.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -54,9 +52,11 @@ public class UserService {
     }
 
     public String likeAudiobook(String username, String title) {
+        String newTitle = title.replaceAll("-", " ");
+
         User user = userRepository.findUserByUsernameIgnoreCase(username);
 
-        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow();
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle).orElseThrow();
 
         user.getLikedAudiobooks().add(audiobook);
 
@@ -66,9 +66,11 @@ public class UserService {
     }
 
     public String unlikeAudiobook(String username, String title) {
+        String newTitle = title.replaceAll("-", " ");
+
         User user = userRepository.findUserByUsernameIgnoreCase(username);
 
-        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow();
+        Audiobook audiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle).orElseThrow();
 
         for (int i=0; i<user.getLikedAudiobooks().size(); i++) {
             if (Objects.equals(user.getLikedAudiobooks().get(i).getTitle(), audiobook.getTitle())) {

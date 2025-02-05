@@ -26,7 +26,7 @@ public class GenreService {
     }
 
     public Genre getGenreByName(String name){
-        System.out.println(name);
-        return genreRepository.findByNameIgnoreCase(name);
+        String newName = name.replaceAll("-", " ");
+        return genreRepository.findByNameIgnoreCase(newName);
     }
 }

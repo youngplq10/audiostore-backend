@@ -24,9 +24,7 @@ public class GenreController {
 
     @GetMapping("/public/genre/{name}")
     public ResponseEntity<Genre> getGenreNamed(@PathVariable String name){
-        String newName = name.replaceAll("-", " ");
-
-        return new ResponseEntity<Genre> (genreService.getGenreByName(newName), HttpStatus.OK);
+        return new ResponseEntity<Genre> (genreService.getGenreByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/admin/genre")

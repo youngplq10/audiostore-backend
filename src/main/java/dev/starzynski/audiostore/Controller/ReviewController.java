@@ -5,7 +5,6 @@ import dev.starzynski.audiostore.Service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,16 +26,11 @@ public class ReviewController {
 
     @GetMapping("/public/reviews/{title}")
     public ResponseEntity<List<Review>> getAllReviewsOfAudiobook(@PathVariable String title) {
-        String newTitle = title.replaceAll("-", " ");
-        return new ResponseEntity<List<Review>> (reviewService.getAllReviewsOfAudiobook(newTitle), HttpStatus.OK);
+        return new ResponseEntity<List<Review>> (reviewService.getAllReviewsOfAudiobook(title), HttpStatus.OK);
     }
 
     @PostMapping("/auth/review")
-    public String createReview(@Validated @RequestParam String reviewBody, @Validated @RequestParam String audiobookTitle, @Validated @RequestParam Integer stars, @Validated @RequestParam String username) {
-        Review newReview = new Review();
-        newReview.setReviewBody(reviewBody);
-        newReview.setStars(stars);
-
-        return reviewService.createReview(newReview, audiobookTitle, username);
+    public ResponseEntity<String> createReview(@Validated @RequestParam String reviewBody, @Validated @RequestParam String audiobookTitle, @Validated @RequestParam Integer stars, @Validated @RequestParam String username) {
+        return new ResponseEntity<String> (reviewService.createReview(reviewBody, stars, audiobookTitle, username), HttpStatus.CREATED);
     }
 }

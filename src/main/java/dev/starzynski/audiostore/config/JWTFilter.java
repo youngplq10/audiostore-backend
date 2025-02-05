@@ -1,6 +1,5 @@
 package dev.starzynski.audiostore.config;
 
-import dev.starzynski.audiostore.Entity.MyUserDetails;
 import dev.starzynski.audiostore.Service.JWTService;
 import dev.starzynski.audiostore.Service.MyUserDetailsService;
 import jakarta.servlet.FilterChain;
@@ -48,10 +47,7 @@ public class JWTFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
-
         }
-
         filterChain.doFilter(request, response);
-        
     }
 }

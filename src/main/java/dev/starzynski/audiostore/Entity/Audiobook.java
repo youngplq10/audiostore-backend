@@ -1,11 +1,6 @@
 package dev.starzynski.audiostore.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -39,8 +34,6 @@ public class Audiobook {
     @JsonIgnoreProperties("audiobook")
     private List<Review> reviews;
 
-    private Integer duration;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date published_at_date;
 
@@ -49,8 +42,15 @@ public class Audiobook {
 
     public Audiobook(){
         added_at_date = new Date();
-        duration = 0;
         id = new ObjectId();
+    }
+    public Audiobook(String title, String description, String author, Date published_at_date) {
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.published_at_date = published_at_date;
+        this.added_at_date = new Date();
+        this.id = new ObjectId();
     }
 
     public ObjectId getId() { return id; }
@@ -73,9 +73,6 @@ public class Audiobook {
 
     public Genre getGenre() { return genre; }
     public void setGenre(Genre genre) { this.genre = genre; }
-
-    public Integer getDuration() { return duration; }
-    public void setDuration(Integer duration) { this.duration = duration; }
 
     public Date getPublished_at_date() { return published_at_date; }
     public void setPublished_at_date(Date published_at_date) { this.published_at_date = published_at_date; }

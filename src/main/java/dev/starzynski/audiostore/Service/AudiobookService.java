@@ -5,10 +5,18 @@ import dev.starzynski.audiostore.Entity.Genre;
 import dev.starzynski.audiostore.Repository.AudiobookRepository;
 import dev.starzynski.audiostore.Repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -22,52 +30,89 @@ public class AudiobookService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public List<Audiobook> getAllAudiobooks() {
+    @Value("${upload.directory}")
+    public String uploadDirectory = "/uploads/";
 
+    public List<Audiobook> getAllAudiobooks() {
         return audiobookRepository.findAll();
     }
 
     public Optional<Audiobook> getAudiobookByTitle(String title) {
-        return audiobookRepository.findAudiobookByTitleIgnoreCase(title);
+        String newTitle = title.replaceAll("-", " ");
+        return audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle);
     }
 
     public Boolean deleteAudiobookByTitle(String title){
-        if (audiobookRepository.existsAudiobookByTitleIgnoreCase(title)){
-            audiobookRepository.deleteAudiobookByTitleIgnoreCase(title);
+        String newTitle = title.replaceAll("-", " ");
+
+        if (audiobookRepository.existsAudiobookByTitleIgnoreCase(newTitle)){
+            audiobookRepository.deleteAudiobookByTitleIgnoreCase(newTitle);
             return true;
         }
+
         return false;
     }
 
-    public Audiobook createAudiobook(Audiobook audiobook){
+    public Boolean createAudiobook(String title, String description, String author, Date published_at_date, String genreName, MultipartFile coverImage, MultipartFile audioFile){
+        Audiobook audiobook = new Audiobook(title, description, author, published_at_date);
 
-        System.out.println(audiobook.getGenre().getName());
+        try{
+            Genre genre = genreRepository.findByNameIgnoreCase(genreName);
 
-        Genre genre = genreRepository.findByNameIgnoreCase(audiobook.getGenre().getName());
+            audiobook.setGenre(genre);
 
-        audiobook.setGenre(genre);
+            try {
+                File directory = new File(uploadDirectory);
 
-        audiobookRepository.insert(audiobook);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
 
-        genre.getAudiobooks().add(audiobook);
-        genreRepository.save(genre);
+                byte[] audioBytes = audioFile.getBytes();
+                byte[] coverBytes = coverImage.getBytes();
 
-        return audiobook;
+                Path coverPath = Paths.get(uploadDirectory + audiobook.getId() + coverImage.getOriginalFilename());
+
+                Path audioPath = Paths.get(uploadDirectory + audiobook.getId() + audioFile.getOriginalFilename());
+
+                Files.write(coverPath, coverBytes);
+                Files.write(audioPath, audioBytes);
+
+                audiobook.setCoverLink("/uploads/" + audiobook.getId() + coverImage.getOriginalFilename());
+                audiobook.setAudioLink("/uploads/" + audiobook.getId() + audioFile.getOriginalFilename());
+
+            } catch (Exception e) {
+                return false;
+            }
+
+            audiobookRepository.insert(audiobook);
+
+            genre.getAudiobooks().add(audiobook);
+            genreRepository.save(genre);
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 
-    public void updateAudiobook(Audiobook audiobook, String title){
-        Audiobook updatingAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(title).orElseThrow(null);
+    public Boolean updateAudiobook(String title, String description, String author, Date published_at_date, String genreName){
+        String newTitle = title.replaceAll("-", " ");
 
-        updatingAudiobook.setTitle(audiobook.getTitle());
-        updatingAudiobook.setDescription(audiobook.getDescription());
-        updatingAudiobook.setAuthor(audiobook.getAuthor());
-        updatingAudiobook.setCoverLink(audiobook.getCoverLink());
-        updatingAudiobook.setAudioLink(audiobook.getAudioLink());
-        updatingAudiobook.setGenre(audiobook.getGenre());
-        updatingAudiobook.setDuration(audiobook.getDuration());
-        updatingAudiobook.setPublished_at_date(audiobook.getPublished_at_date());
+        Audiobook updatingAudiobook = audiobookRepository.findAudiobookByTitleIgnoreCase(newTitle).orElseThrow();
 
+        if (!Objects.equals(description, updatingAudiobook.getDescription())){ updatingAudiobook.setDescription(description); }
+        if (!Objects.equals(author, updatingAudiobook.getAuthor())){ updatingAudiobook.setAuthor(author); }
+        if (!Objects.equals(published_at_date, updatingAudiobook.getPublished_at_date())){ updatingAudiobook.setPublished_at_date(published_at_date); }
+        if (!Objects.equals(genreName, updatingAudiobook.getGenre().getName())){
+            Genre newGenre = genreRepository.findByNameIgnoreCase(genreName);
+            updatingAudiobook.setGenre(newGenre);
+            genreRepository.save(newGenre);
+        }
         audiobookRepository.save(updatingAudiobook);
+
+        return true;
     }
 
     public List<Audiobook> searchAudiobooks(String search) {
