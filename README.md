@@ -1,0 +1,1 @@
+Audiostore is a web service designed for educational purposes, serving as an audiobook library. Users can create accounts, sign in, and access a variety of audiobooks hosted by a backend Spring Boot server running on Tomcat.
